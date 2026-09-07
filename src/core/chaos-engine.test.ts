@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { createReaction } from './chaos-engine';
+import {
+  createReaction,
+  defaultReactionTemplates,
+  renderReactionTemplate,
+  type ReactionTemplates,
+} from './chaos-engine';
 
 describe('createReaction', () => {
   it('personalizes a follow reaction', () => {
@@ -9,17 +14,41 @@ describe('createReaction', () => {
     });
   });
 
-  it('includes the raid size', () => {
-    expect(createReaction({ type: 'raid', username: 'PowPow', viewers: 42 }).line).toContain(
-      '42 troublemakers',
+  it('renders raid viewer counts', () => {
+    expect(createReaction({ type: 'raid', username: 'Powder', viewers: 42 })).toEqual({
+      intensity: 'high',
+      line: 'Powder brought 42 troublemakers!',
+    });
+  });
+
+  it('renders reward metadata', () => {
+    expect(
+      createReaction({ type: 'reward', username: 'Fishbones', rewardTitle: 'Hydrate' }),
+    ).toEqual({
+      intensity: 'medium',
+      line: 'Fishbones spent points on Hydrate. Worth it.',
+    });
+  });
+
+  it('uses safe fallback values when metadata is missing', () => {
+    expect(renderReactionTemplate('{username}/{viewers}/{reward}', { type: 'manual' })).toBe(
+      'stranger/0/something suspicious',
     );
   });
 
-  it('uses a safe fallback for blank usernames', () => {
-    expect(createReaction({ type: 'sub', username: ' ' }).line).toContain('stranger');
+  it('supports custom templates without changing event semantics', () => {
+    const templates: ReactionTemplates = {
+      ...defaultReactionTemplates,
+      sub: 'Welcome, {username}.',
+    };
+
+    expect(createReaction({ type: 'sub', username: '  Vi  ' }, templates)).toEqual({
+      intensity: 'medium',
+      line: 'Welcome, Vi.',
+    });
   });
 
-  it('creates a manual chaos reaction', () => {
+  it('creates a manual reaction', () => {
     expect(createReaction({ type: 'manual' })).toEqual({
       intensity: 'medium',
       line: 'Chaos check: systems unstable. Perfect.',

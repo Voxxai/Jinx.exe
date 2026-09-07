@@ -5,7 +5,8 @@
 - [x] Tauri, React and TypeScript foundation
 - [x] Event-to-reaction domain model
 - [x] Automated quality and security checks
-- [ ] Persisted local settings
+- [x] Manual reaction console
+- [x] Persisted local settings
 - [ ] Transparent, click-through companion window
 
 ## Phase 2 — Stream awareness
