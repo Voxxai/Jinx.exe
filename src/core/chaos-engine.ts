@@ -1,9 +1,10 @@
-export type StreamEventType = 'follow' | 'raid' | 'sub' | 'manual';
+export type StreamEventType = 'follow' | 'raid' | 'sub' | 'reward' | 'manual';
 
 export interface StreamEvent {
   type: StreamEventType;
   username?: string;
   viewers?: number;
+  rewardTitle?: string;
 }
 
 export interface ChaosReaction {
@@ -11,26 +12,40 @@ export interface ChaosReaction {
   line: string;
 }
 
-const name = (username?: string) => username?.trim() || 'stranger';
+export type ReactionTemplates = Record<StreamEventType, string>;
 
-export function createReaction(event: StreamEvent): ChaosReaction {
-  switch (event.type) {
-    case 'follow':
-      return {
-        intensity: 'low',
-        line: `Oh look, ${name(event.username)} finally found the fun channel.`,
-      };
-    case 'sub':
-      return {
-        intensity: 'medium',
-        line: `${name(event.username)} joined the chaos crew. Excellent choice.`,
-      };
-    case 'raid':
-      return {
-        intensity: 'high',
-        line: `${name(event.username)} brought ${event.viewers ?? 0} troublemakers!`,
-      };
-    case 'manual':
-      return { intensity: 'medium', line: 'Chaos check: systems unstable. Perfect.' };
-  }
+export const defaultReactionTemplates: ReactionTemplates = {
+  follow: 'Oh look, {username} finally found the fun channel.',
+  sub: '{username} joined the chaos crew. Excellent choice.',
+  raid: '{username} brought {viewers} troublemakers!',
+  reward: '{username} spent points on {reward}. Worth it.',
+  manual: 'Chaos check: systems unstable. Perfect.',
+};
+
+const intensityByEvent: Record<StreamEventType, ChaosReaction['intensity']> = {
+  follow: 'low',
+  sub: 'medium',
+  raid: 'high',
+  reward: 'medium',
+  manual: 'medium',
+};
+
+const name = (username?: string) => username?.trim() || 'stranger';
+const reward = (rewardTitle?: string) => rewardTitle?.trim() || 'something suspicious';
+
+export function renderReactionTemplate(template: string, event: StreamEvent): string {
+  return template
+    .replaceAll('{username}', name(event.username))
+    .replaceAll('{viewers}', String(event.viewers ?? 0))
+    .replaceAll('{reward}', reward(event.rewardTitle));
+}
+
+export function createReaction(
+  event: StreamEvent,
+  templates: ReactionTemplates = defaultReactionTemplates,
+): ChaosReaction {
+  return {
+    intensity: intensityByEvent[event.type],
+    line: renderReactionTemplate(templates[event.type], event),
+  };
 }
