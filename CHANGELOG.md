@@ -10,6 +10,8 @@ All notable changes to Jinx.exe are documented here. The format follows
 
 - Tauri 2 desktop shell with a React and TypeScript control surface.
 - Tested event-to-reaction Chaos Engine foundation.
+- Manual reaction console for follow, subscription, raid, reward and manual events.
+- Versioned local reaction settings with editable templates and optional system speech.
 - CI, CodeQL, dependency review and automated desktop build workflows.
 - Contribution, security and community governance files.
 
