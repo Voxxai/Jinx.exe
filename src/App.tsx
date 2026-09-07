@@ -1,15 +1,7 @@
 import { useState } from 'react';
 import { StatusCard } from './components/StatusCard';
-import {
-  createReaction,
-  type StreamEvent,
-  type StreamEventType,
-} from './core/chaos-engine';
-import {
-  loadSettings,
-  saveSettings,
-  type CompanionSettings,
-} from './core/companion-settings';
+import { createReaction, type StreamEvent, type StreamEventType } from './core/chaos-engine';
+import { loadSettings, saveSettings, type CompanionSettings } from './core/companion-settings';
 
 const eventControls: Array<{ type: StreamEventType; label: string; hint: string }> = [
   { type: 'follow', label: 'FOLLOW', hint: 'New follower' },
