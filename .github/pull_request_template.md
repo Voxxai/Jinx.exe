@@ -14,5 +14,6 @@
 
 - [ ] The PR title follows Conventional Commits.
 - [ ] Tests cover new or changed behavior.
+- [ ] User-visible changes are recorded under `Unreleased` in `CHANGELOG.md`.
 - [ ] No secrets or third-party copyrighted assets are included.
 - [ ] Documentation was updated where needed.

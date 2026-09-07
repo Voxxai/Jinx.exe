@@ -1,0 +1,36 @@
+frontend:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'src/**'
+          - 'index.html'
+          - 'vite.config.ts'
+          - 'vitest.config.ts'
+
+rust:
+  - changed-files:
+      - any-glob-to-any-file: 'src-tauri/**'
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file: '.github/workflows/**'
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/*.md'
+          - 'docs/**'
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'package.json'
+          - 'package-lock.json'
+          - 'src-tauri/Cargo.toml'
+          - 'src-tauri/Cargo.lock'
+
+release:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'CHANGELOG.md'
+          - '.github/release.yml'
+          - 'scripts/check-version.mjs'
