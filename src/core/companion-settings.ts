@@ -43,9 +43,6 @@ export function loadSettings(storage: Pick<Storage, 'getItem'>): CompanionSettin
   }
 }
 
-export function saveSettings(
-  storage: Pick<Storage, 'setItem'>,
-  settings: CompanionSettings,
-): void {
+export function saveSettings(storage: Pick<Storage, 'setItem'>, settings: CompanionSettings): void {
   storage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(settings));
 }
