@@ -20,3 +20,9 @@ Direct pushes, force-pushes and branch deletion are disabled on `main`.
 - New integrations must degrade gracefully when disconnected.
 - Viewer-provided text must be validated before display or TTS playback.
 - Accessible UI and reduced-motion preferences are part of the definition of done.
+- User-visible changes belong under `Unreleased` in `CHANGELOG.md`.
+
+## Releases
+
+Releases follow Semantic Versioning and are prepared through a dedicated release PR. See
+[docs/RELEASING.md](docs/RELEASING.md) for the complete checklist.

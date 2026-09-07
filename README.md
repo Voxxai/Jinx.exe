@@ -1,5 +1,10 @@
 # Jinx.exe
 
+[![CI](https://github.com/Voxxai/Jinx.exe/actions/workflows/ci.yml/badge.svg)](https://github.com/Voxxai/Jinx.exe/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/Voxxai/Jinx.exe/actions/workflows/codeql.yml/badge.svg)](https://github.com/Voxxai/Jinx.exe/actions/workflows/codeql.yml)
+[![Release](https://img.shields.io/github/v/release/Voxxai/Jinx.exe?include_prereleases&sort=semver)](https://github.com/Voxxai/Jinx.exe/releases)
+[![License](https://img.shields.io/github/license/Voxxai/Jinx.exe)](LICENSE)
+
 > An interactive, chaos-powered desktop companion for streams.
 
 Jinx.exe is a long-term passion project by **Voxxai**. The app will react to Twitch events,
@@ -58,6 +63,13 @@ Squash merging keeps the history linear.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) and the
 [project roadmap](docs/ROADMAP.md) for details.
+
+## Releases
+
+Releases follow Semantic Versioning. Version changes and changelog entries go through a
+protected release PR; a `vX.Y.Z` tag then produces draft releases and native desktop builds.
+See the [changelog](CHANGELOG.md), [release history](https://github.com/Voxxai/Jinx.exe/releases)
+and [maintainer release guide](docs/RELEASING.md).
 
 ## Fan-project notice
 
