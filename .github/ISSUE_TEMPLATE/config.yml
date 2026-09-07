@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Questions and ideas
+    url: https://github.com/Voxxai/Jinx.exe/discussions
+    about: Ask for help or discuss an idea before turning it into an issue.
   - name: Security vulnerability
     url: https://github.com/Voxxai/Jinx.exe/security/advisories/new
     about: Report security issues privately.
